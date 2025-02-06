@@ -217,7 +217,6 @@
                 width: 35px;
                 height: 35px;
             }
-
         }
 
         header h1 {
@@ -362,7 +361,6 @@
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            /* Responsive min width */
             gap: 50px;
         }
 
@@ -424,7 +422,7 @@
         }
 
         /* Responsive adjustments for small screens */
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 400px) {
             #projects {
                 padding: 30px;
             }
@@ -435,6 +433,12 @@
 
             .project-card {
                 padding: 10px;
+            }
+
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 50px;
             }
 
             .project-image {
