@@ -6,8 +6,8 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: rgb(55, 57, 101);
-            background: linear-gradient(180deg, rgb(60, 63, 98) 0%, rgba(38, 50, 81, 1) 40%, rgba(102, 109, 120, 1) 100%);
+            background: #363867;
+            background: linear-gradient(180deg, #343b89 0%, rgb(42, 57, 95) 40%, rgb(111, 119, 174) 100%);
             color: white;
         }
 
@@ -24,7 +24,7 @@
         }
 
         p {
-            margin-bottom: 20px;
+            margin-bottom: 5px;
         }
 
         header {
@@ -40,8 +40,8 @@
         .container.profile-header {
             padding-top: 70px;
             position: static;
-            background: rgb(226, 231, 255);
-            max-width: 700px;
+            background: rgb(216, 222, 255);
+            max-width: 800px;
             margin: 0 auto;
             border-radius: 25px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.53);
@@ -52,7 +52,9 @@
         .container.profile-header h1 {
             color: #ffffff;
             -webkit-text-stroke: 2px #232946;
-            padding: 10px;
+            margin-top: 7px;
+            padding: 5px;
+            letter-spacing: 5px;
         }
 
         .header-title-wrapper {
@@ -63,7 +65,7 @@
 
         .header-title-wrapper span {
             padding: 18px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #2d236e;
         }
 
@@ -161,9 +163,9 @@
             }
 
             .header-title-wrapper span {
-                padding: 5px;
-                font-size: 1.3rem;
-                color: #2d236e;
+                padding: 4px;
+                font-size: 1.2rem;
+                color: #283075;
             }
 
             .header-title-wrapper img {
@@ -172,18 +174,20 @@
             }
 
             #about .container {
-                max-width: 90%;
+                max-width: 95%;
             }
 
         }
 
         /* For devices with a width of 480px or smaller (Mobile Phones) */
         @media (max-width: 480px) {
+            #about .container {
+                padding: 2px;
+            }
+
             .container.profile-header {
-                max-width: 95%;
-                /* Further adjust the container width for mobile phones */
+                max-width: 100%;
                 padding-top: 70px;
-                /* Reduce the padding for mobile */
             }
 
             .flip-container {
@@ -197,25 +201,25 @@
             }
 
             .container.profile-header h1 {
-                font-size: 1.7rem;
+                font-size: 2.5rem;
                 padding: 10px;
             }
 
             .header-title-wrapper {
-                display: inline-flex;
+                display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
             }
 
             .header-title-wrapper span {
                 padding: 5px;
-                font-size: 1.3rem;
-                color: #2d236e;
+                font-size: 1.4rem;
             }
 
             .header-title-wrapper img {
-                width: 35px;
-                height: 35px;
+                width: 50px;
+                height: 50px;
             }
         }
 
@@ -231,33 +235,53 @@
             font-size: 1.3rem;
             color: #ffffff;
         }
+        
+        .cv-button {
+            display: inline-block;
+            margin: 20px;
+            background-color: #4459b8;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.33);
+            transition: background-color 0.3s, box-shadow 0.3s;
+          }
+        
+          .cv-button:hover {
+            background: rgb(226, 231, 255);
+            color: #283075;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+          }
 
         /* About section */
         #about {
-            padding: 20px;
+            padding: 10px;
             text-align: center;
         }
 
         #about .container {
-            max-width: 60%;
+            max-width: 80%;
         }
 
-        #about h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
+        #about p {
+            line-height: 1.8rem;
         }
 
         /* Skills section */
         #skills {
             color: #3b3838;
             background-color: rgb(226, 231, 255);
-            padding: 60px;
+            padding: 80px;
         }
 
         #skills h2 {
             text-align: center;
             font-size: 36px;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         #skills .container {
@@ -321,17 +345,13 @@
         }
 
         @media (max-width: 768px) {
-            #skills {
-                padding: 10px;
-            }
-
             .logo_items img {
                 background: rgb(255, 255, 255);
                 border-radius: 10px;
                 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
                 padding: 20px;
                 margin-right: 10px;
-                height: 80px;
+                height: 90px;
                 width: 90px;
                 object-fit: contain;
             }
@@ -342,13 +362,24 @@
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 480px) {
+            #skills .container{
+                padding: 40px;
+            }
+
             #skills {
                 padding: 10px;
             }
 
             .logo_items img {
-                padding: 10px;
+                background: rgb(255, 255, 255);
+                border-radius: 10px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                margin-right: 10px;
+                height: 90px;
+                width: 90px;
+                object-fit: contain;
             }
 
             .logos:before,
@@ -370,7 +401,6 @@
 
         #projects h3 {
             text-align: center;
-            margin-bottom: 20px;
         }
 
         .projects-grid {
@@ -395,7 +425,7 @@
         }
 
         .project-content {
-            padding: 15px;
+            padding: 20px;
         }
 
         .project-date {
@@ -410,34 +440,42 @@
 
         .project-title {
             font-size: 1.5em;
-            margin-bottom: 10px;
         }
 
         .project-image {
             width: 100%;
+            padding: 5px;
             height: 200px;
             object-fit: cover;
-            border-radius: 10px;
+            border-radius: 5px;
+            box-shadow: 5px 5px 15px 5px #00000068;
+        }
+
+        .project-description {
+            padding-bottom: 15px;
         }
 
         .project-button {
-            background-color: #374689;
+            background-color: #4459b8;
             color: white;
             padding: 8px 15px;
             margin-top: 25px;
+            letter-spacing: 2px;
             border: none;
             border-radius: 25px;
             font-size: 0.85rem;
             transition: all 0.3s ease;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.455);
         }
 
         .project-button:hover {
-            background-color: #253167;
-            box-shadow: 5px 5px 15px 5px #000000b1;
+            background: rgb(226, 231, 255);
+            color: #283075;
+            
         }
 
         /* Responsive adjustments for small screens */
-        @media screen and (max-width: 400px) {
+        @media (max-width: 480px) {
             #projects {
                 padding: 30px;
             }
@@ -463,90 +501,97 @@
 
         /* Contact section */
         #contact {
-            background-color: #f9f9f9;
-            padding: 60px 0;
-            color: #333;
-        }
-
-        #contact h2 {
+            color: #3b3838;
+            background-color: rgb(226, 231, 255);
+            padding: 60px;
             text-align: center;
+        }
+        
+        #contact h2 {
             font-size: 36px;
             margin-bottom: 20px;
         }
 
-        #contact form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        #contact form div {
+        #contact p {
             margin-bottom: 20px;
+            letter-spacing: 1.6px;
         }
-
-        #contact form label {
-            display: block;
-            font-weight: 600;
+        
+        #contact .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
-
-        #contact form input,
-        #contact form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-        }
-
-        #contact form button {
-            background-color: #333;
-            color: #fff;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        #contact form button:hover {
-            background-color: #555;
-        }
-
-        .contact-links {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .contact-links ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .contact-links ul li {
-            display: inline-block;
-            margin: 0 15px;
-        }
-
-        .contact-links ul li a {
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 25px;
             font-size: 18px;
-            color: #333;
             text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
+            color: white;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.455);
+            width: 200px;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin: 10px; 
+        }
+        
+        .contact-btn i {
+            margin-right: 10px;
+        }
+        
+        .whatsapp-btn {
+            background-color: #25d366;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        
+        .linkedin-btn {
+            background-color: #0A66C2;
+        }
+        
+        .linkedin-btn:hover {
+            background-color: #004182;
+        }
+        
+        .email-btn {
+            background-color: #e14020;
+        }
+        
+        .email-btn:hover {
+            background-color: #bc3116;
         }
 
-        .contact-links ul li a:hover {
-            color: #0077b5;
-            /* Couleur pour LinkedIn, vous pouvez l'ajuster */
+        @media (max-width: 768px) {
+            #contact h2 {
+                font-size: 28px;
+            }
+        
+            #contact .contact-btn {
+                width: 100%; 
+                padding: 14px 30px; 
+                font-size: 16px;
+            }
         }
-
-        /* Footer styles */
+        
+        @media (max-width: 480px) {
+            #contact h2 {
+                font-size: 24px; 
+            }
+        
+            #contact .contact-btn {
+                font-size: 14px; 
+            }
+        }
+        
         footer {
-            background: #333;
+            background: #282838;
             color: white;
             text-align: center;
             padding: 20px 0;
@@ -554,4 +599,5 @@
 
         footer p {
             font-size: 1rem;
+            letter-spacing: 2px;
         }
