@@ -131,10 +131,11 @@
             box-shadow: 5px 5px 15px 5px #000000b1;
         }
 
+        /* PDF Container */
         .pdf-container {
             position: relative;
             width: 100%;
-            padding-top: 56.25%;
+            padding-top: 56.25%; /* Aspect ratio for 16:9 */
         }
 
         .pdf-container embed {
@@ -165,9 +166,9 @@
                 font-size: 0.9rem;
             }
 
+            /* Adjust PDF container for smaller screens */
             .pdf-container {
-                padding-top: 75%;
-                /* Adjust aspect ratio to fit better on smaller screens */
+                padding-top: 75%; /* Adjust aspect ratio to fit better */
             }
         }
     </style>
