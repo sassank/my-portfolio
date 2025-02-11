@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         * {
             margin: 0;
@@ -145,6 +145,31 @@
             height: 100%;
         }
 
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .project-description,
+            .technologies,
+            .features {
+                font-size: 14px;
+            }
+
+            .all-project-button {
+                font-size: 0.9rem;
+            }
+
+            .pdf-container {
+                padding-top: 75%;
+                /* Adjust aspect ratio to fit better on smaller screens */
+            }
+        }
     </style>
 </head>
 
@@ -153,7 +178,10 @@
         <h1>ownCloud server</h1>
         <hr>
         <div class="project-description">
-            <p>This project focuses on setting up an ownCloud server on a Debian operating system. ownCloud is a powerful open-source platform that provides file synchronization, sharing, and collaboration services. The goal is to configure a fully functional ownCloud server, allowing users to securely store and manage their files, with support for LDAP integration and access controls.</p>
+            <p>This project focuses on setting up an ownCloud server on a Debian operating system. ownCloud is a
+                powerful open-source platform that provides file synchronization, sharing, and collaboration services.
+                The goal is to configure a fully functional ownCloud server, allowing users to securely store and manage
+                their files, with support for LDAP integration and access controls.</p>
         </div>
         <div class="features">
             <h2>Features:</h2>
@@ -161,7 +189,8 @@
                 <li>Installation of ownCloud on a Debian Buster machine with specific configurations.</li>
                 <li>Setup of network interfaces, including NAT and static IP addresses.</li>
                 <li>Database creation and user configuration for ownCloud.</li>
-                <li>Customization of Apache settings to simplify the URL structure and ensure seamless access to the ownCloud platform.</li>
+                <li>Customization of Apache settings to simplify the URL structure and ensure seamless access to the
+                    ownCloud platform.</li>
             </ul>
         </div>
         <div class="technologies">
@@ -183,8 +212,8 @@
         </div>
         <div class="button-container">
             <button class="all-project-button" onclick="window.location.href='../index.html#projects';">
-                <i class="fas fa-angle-left"></i> 
-                Back to Projects 
+                <i class="fas fa-angle-left"></i>
+                Back to Projects
             </button>
         </div>
     </div>
