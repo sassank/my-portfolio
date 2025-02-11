@@ -204,8 +204,11 @@
             <h2>Documentation:</h2>
             <p>Here is a documentation about the database creation :</p>
             <div class="pdf-container">
-                <embed src="../files/MongoMovie.pdf" type="application/pdf">
+                <embed id="pdfEmbed" src="../files/MongoMovie.pdf" type="application/pdf">
             </div>
+            <p id="pdfFallback" style="display: none;">
+                Unable to display the PDF. <a href="../files/MongoMovie.pdf" target="_blank">Click here to view the document</a>.
+            </p>
         </div>
         <div class="screenshots">
             <h2>Screenshots:</h2>
@@ -223,6 +226,26 @@
             </button>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var pdfEmbed = document.getElementById("pdfEmbed");
+    
+            // Vérifier si le PDF est bien chargé
+            pdfEmbed.onerror = function () {
+                document.getElementById("pdfFallback").style.display = "block";
+                pdfEmbed.style.display = "none";
+            };
+    
+            // Optionnel : Vérifier sur mobile si l'embed fonctionne
+            if (window.innerWidth <= 600) {
+                setTimeout(function () {
+                    if (!pdfEmbed.contentDocument) {
+                        document.getElementById("pdfFallback").style.display = "block";
+                        pdfEmbed.style.display = "none";
+                    }
+                }, 2000);
+            }
+        });
+    </script>
 </body>
-
 </html>
