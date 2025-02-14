@@ -175,23 +175,19 @@
 
         /* For devices with a width of 480px or smaller (Mobile Phones) */
         @media (max-width: 480px) {
-            #about .container {
-                padding: 2px;
-            }
-
             .container.profile-header {
-                max-width: 100%;
+                max-width: 110%;
                 padding-top: 70px;
             }
 
             .flip-container {
-                width: 100px;
-                height: 100px;
+                width: 90px;
+                height: 90px;
             }
 
             .flip-container .profile-picture {
-                width: 100px;
-                height: 100px;
+                width: 90px;
+                height: 90px;
             }
 
             .container.profile-header h1 {
