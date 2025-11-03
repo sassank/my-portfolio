@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake</title>
+    <title>ViteDrive - Location de véhicules</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
     <style>
         * {
             margin: 0;
@@ -27,7 +26,6 @@
             padding: 20px;
         }
 
-        /* Project Title */
         h1 {
             padding: 20px;
             text-align: center;
@@ -40,25 +38,8 @@
             color: #555;
         }
 
-        /* Button Style */
-        .back-button {
-            display: flex;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            font-size: 16px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-    
-
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Features Section */
-        .features {
-            margin: 30px 0 30px 0;
+        .features, .technologies, .screenshots, .repository {
+            margin: 30px 0;
         }
 
         ul {
@@ -71,7 +52,6 @@
         }
 
         .screenshots {
-            margin: 30px 0 30px 0;
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
@@ -84,14 +64,6 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .technologies {
-            margin: 30px 0 30px 0;      
-        }
-
-        .repository {
-            margin: 5px 0 30px 0;      
         }
 
         .github-link {
@@ -111,16 +83,17 @@
             padding: 10px;
             text-align: center;
         }
-        
+
         .all-project-button {
             text-align: center;
             background-color: #374689;
-            padding: 12px;
+            padding: 12px 25px;
             color: white;
             border: none;
             border-radius: 25px;
             font-size: 1rem;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .all-project-button:hover {
@@ -128,46 +101,73 @@
             box-shadow: 5px 5px 15px 5px #000000b1;
         }
 
+        .project-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .project-link a {
+            background-color: #007BFF;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .project-link a:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>Snake Game</h1>
+        <h1>ViteDrive - Plateforme de location de véhicules</h1>
         <hr>
+
         <div class="project-description">
-            <p>Recreating the classic Snake game with Python language.</p>
+            <p>
+                <strong>ViteDrive</strong> est une plateforme web permettant aux utilisateurs de rechercher, réserver et gérer
+                la location de véhicules en ligne. L’application offre une interface fluide et moderne, ainsi qu’un espace
+                d’administration pour la gestion des véhicules, des utilisateurs et des réservations.
+            </p>
         </div>
+
         <div class="features">
-            <h2>Features:</h2>
+            <h2>Fonctionnalités principales :</h2>
             <ul>
-                <li>Use the arrow keys to control the direction of the snake.</li>
-                <li>Eat the apple to grow your snake.</li>
-                <li>Avoid colliding with the walls or yourself.</li>
-                <li>The game ends if the snake collides with itself or the walls.</li>
+                <li>Recherche de véhicules disponibles selon les dates et le modèle.</li>
+                <li>Création et gestion de compte utilisateur.</li>
+                <li>Réservation en ligne.</li>
+                <li>Interface administrateur pour gérer les véhicules et les réservations.</li>
+                <li>Affichage dynamique et responsive du catalogue de véhicules.</li>
             </ul>
         </div>
+
         <div class="technologies">
-            <h2>Technologies Used:</h2>
+            <h2>Technologies utilisées :</h2>
             <ul>
-                <li>Programming Language: Python</li>
-                <li>Game Library: Pygame</li>
+                <li><strong>Front-end :</strong> React.js, Axios</li>
+                <li><strong>Back-end :</strong> Spring Boot (Java), REST API</li>
+                <li><strong>Base de données :</strong> PostgreSQL</li>
+                <li><strong>Outils :</strong> Git, GitHub, Postman</li>
             </ul>
         </div>
+
         <div class="screenshots">
-            <h2>Screenshots:</h2>
-            <img src="../assets/py-snake.png" alt="snake-python">
-            <img src="../assets/py-snake2.png" alt="snake-python2">
+            <h2>Capture :</h2>
+            <img src="../assets/vitedrive2.png" alt="Page des véhicules ViteDrive">
+            <br>
+            <img src="../assets/vitedrive3.png" alt="Page des inscription">
         </div>
-        <div class="repository">
-            <h2>Repository:</h2>
-            <a href="https://github.com/sassank/Snake" target="_blank" class="github-link">
-                View source code on GitHub <i class="fa fa-external-link"></i></a>
-        </div>
+
         <div class="button-container">
-        <button class="all-project-button" onclick="window.location.href='../index.html#projects';">
-            <i class="fas fa-angle-left"></i> 
-            Back to Projects 
-        </button>
+            <button class="all-project-button" onclick="window.location.href='../index.html#projects';">
+                <i class="fas fa-angle-left"></i> Retour aux projets
+            </button>
+        </div>
     </div>
 </body>
 </html>

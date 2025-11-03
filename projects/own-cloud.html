@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ownCloud</title>
+    <title>Serveur ownCloud</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -27,7 +27,6 @@
             padding: 20px;
         }
 
-        /* Project Title */
         h1 {
             padding: 20px;
             text-align: center;
@@ -40,22 +39,6 @@
             color: #555;
         }
 
-        /* Button Style */
-        .back-button {
-            display: flex;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            font-size: 16px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Features Section */
         .features {
             margin: 30px 0 30px 0;
         }
@@ -135,7 +118,7 @@
         .pdf-container {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* Aspect ratio for 16:9 */
+            padding-top: 56.25%;
         }
 
         .pdf-container embed {
@@ -166,9 +149,8 @@
                 font-size: 0.9rem;
             }
 
-            /* Adjust PDF container for smaller screens */
             .pdf-container {
-                padding-top: 75%; /* Adjust aspect ratio to fit better */
+                padding-top: 75%;
             }
         }
     </style>
@@ -176,48 +158,46 @@
 
 <body>
     <div class="container">
-        <h1>ownCloud server</h1>
+        <h1>Serveur ownCloud</h1>
         <hr>
         <div class="project-description">
-            <p>This project focuses on setting up an ownCloud server on a Debian operating system. ownCloud is a
-                powerful open-source platform that provides file synchronization, sharing, and collaboration services.
-                The goal is to configure a fully functional ownCloud server, allowing users to securely store and manage
-                their files, with support for LDAP integration and access controls.</p>
+            <p>Ce projet consiste à mettre en place un serveur <strong>ownCloud</strong> sur un système d’exploitation <strong>Debian</strong>.  
+            ownCloud est une solution open-source puissante qui permet la synchronisation, le partage et la gestion sécurisée de fichiers.  
+            L’objectif est de configurer un serveur entièrement fonctionnel, permettant aux utilisateurs de stocker et gérer leurs fichiers en toute sécurité, avec la prise en charge de l’intégration LDAP et des contrôles d’accès.</p>
         </div>
         <div class="features">
-            <h2>Features:</h2>
+            <h2>Fonctionnalités principales :</h2>
             <ul>
-                <li>Installation of ownCloud on a Debian Buster machine with specific configurations.</li>
-                <li>Setup of network interfaces, including NAT and static IP addresses.</li>
-                <li>Database creation and user configuration for ownCloud.</li>
-                <li>Customization of Apache settings to simplify the URL structure and ensure seamless access to the
-                    ownCloud platform.</li>
+                <li>Installation d’ownCloud sur une machine Debian Buster avec une configuration spécifique.</li>
+                <li>Configuration des interfaces réseau, incluant le NAT et les adresses IP statiques.</li>
+                <li>Création de la base de données et configuration des utilisateurs pour ownCloud.</li>
+                <li>Personnalisation d’Apache afin de simplifier la structure des URL et d’assurer un accès fluide à la plateforme.</li>
             </ul>
         </div>
         <div class="technologies">
-            <h2>Technologies Used:</h2>
+            <h2>Technologies utilisées :</h2>
             <ul>
-                <li>A virtual machine of Debian Buster.</li>
-                <li>ownCloud: The platform used for cloud storage and file management.</li>
-                <li>Apache: Web server used to serve the ownCloud instance.</li>
-                <li>MySQL: Database system for managing ownCloud's data.</li>
-                <li>LDAP: Lightweight Directory Access Protocol for integrating Active Directory authentication.</li>
+                <li><strong>Système d’exploitation :</strong> Debian Buster (machine virtuelle)</li>
+                <li><strong>Plateforme :</strong> ownCloud – solution de stockage et gestion de fichiers cloud</li>
+                <li><strong>Serveur web :</strong> Apache</li>
+                <li><strong>Base de données :</strong> MySQL</li>
+                <li><strong>Annuaire :</strong> LDAP (intégration avec Active Directory)</li>
             </ul>
         </div>
         <div class="features">
-            <h2>Documentation:</h2>
-            <p>Here is a documentation about the server setup:</p>
+            <h2>Documentation :</h2>
+            <p>Voici la documentation détaillant l’installation et la configuration du serveur :</p>
             <div class="pdf-container">
                 <embed id="pdfEmbed" src="../files/ownCloud-Debian.pdf" type="application/pdf">
             </div>
             <p id="pdfFallback" style="display: none;">
-                Unable to display the PDF. <a href="../files/ownCloud-Debian.pdf" target="_blank">Click here to view the document</a>.
+                Impossible d’afficher le PDF. <a href="../files/ownCloud-Debian.pdf" target="_blank">Cliquez ici pour consulter le document</a>.
             </p>
         </div>
         <div class="button-container">
             <button class="all-project-button" onclick="window.location.href='../index.html#projects';">
                 <i class="fas fa-angle-left"></i>
-                Back to Projects
+                Retour aux projets
             </button>
         </div>
     </div>
@@ -225,13 +205,11 @@
         document.addEventListener("DOMContentLoaded", function () {
             var pdfEmbed = document.getElementById("pdfEmbed");
     
-            // Vérifier si le PDF est bien chargé
             pdfEmbed.onerror = function () {
                 document.getElementById("pdfFallback").style.display = "block";
                 pdfEmbed.style.display = "none";
             };
     
-            // Optionnel : Vérifier sur mobile si l'embed fonctionne
             if (window.innerWidth <= 600) {
                 setTimeout(function () {
                     if (!pdfEmbed.contentDocument) {

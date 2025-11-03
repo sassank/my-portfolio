@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -27,7 +27,6 @@
             padding: 20px;
         }
 
-        /* Project Title */
         h1 {
             padding: 20px;
             text-align: center;
@@ -40,22 +39,6 @@
             color: #555;
         }
 
-        /* Button Style */
-        .back-button {
-            display: flex;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            font-size: 16px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Features Section */
         .features {
             margin: 30px 0 30px 0;
         }
@@ -167,7 +150,6 @@
 
             .pdf-container {
                 padding-top: 75%;
-                /* Adjust aspect ratio to fit better on smaller screens */
             }
         }
     </style>
@@ -178,65 +160,63 @@
         <h1>Mongo Movie</h1>
         <hr>
         <div class="project-description">
-            <p>This project is a web application built with PHP and MongoDB that manages a movie library. It allows
-                users to add, update, delete, and query information about movies, actors, and directors. The system
-                interacts with a MongoDB database to store and retrieve data, providing a practical example of managing
-                movie-related data using NoSQL.</p>
+            <p>Ce projet est une application web développée en <strong>PHP</strong> et <strong>MongoDB</strong> permettant de gérer une bibliothèque de films. 
+            Elle permet aux utilisateurs d’ajouter, modifier, supprimer et interroger des informations sur les films, les acteurs et les réalisateurs.</p>
+            <p>Le système utilise une base de données MongoDB pour stocker et récupérer les données, offrant un exemple concret de gestion de données liées au cinéma avec NoSQL.</p>
         </div>
         <div class="features">
-            <h2>Features:</h2>
+            <h2>Fonctionnalités :</h2>
             <ul>
-                <li>Create, Read, Update & Delete movie datas with MongoDB.</li>
-                <li>Storing and retrieving movie details (e.g., title, genre, release date).</li>
-                <li>Search and filter movies by actors, films and directors.</li>
+                <li>Créer, Lire, Modifier et Supprimer des films avec MongoDB</li>
+                <li>Stockage et récupération des détails des films (titre, genre, date de sortie, etc.)</li>
+                <li>Recherche et filtrage par acteurs, films et réalisateurs</li>
             </ul>
         </div>
         <div class="technologies">
-            <h2>Technologies Used:</h2>
+            <h2>Technologies utilisées :</h2>
             <ul>
-                <li>PHP: Main programming language for backend functionality.</li>
-                <li>MongoDB: Used as the database to manage movie-related data.</li>
-                <li>JavaScript: Used for client-side interactions</li>
-                <li>CSS: For styling the project.</li>
+                <li><strong>PHP :</strong> langage principal pour le backend</li>
+                <li><strong>MongoDB :</strong> base de données pour gérer les informations liées aux films</li>
+                <li><strong>JavaScript :</strong> pour les interactions côté client</li>
+                <li><strong>CSS :</strong> pour le style de l’application</li>
             </ul>
         </div>
         <div class="features">
-            <h2>Documentation:</h2>
-            <p>Here is a documentation about the database creation :</p>
+            <h2>Documentation :</h2>
+            <p>Documentation pour la création et la structure de la base de données :</p>
             <div class="pdf-container">
                 <embed id="pdfEmbed" src="../files/MongoMovie.pdf" type="application/pdf">
             </div>
             <p id="pdfFallback" style="display: none;">
-                Unable to display the PDF. <a href="../files/MongoMovie.pdf" target="_blank">Click here to view the document</a>.
+                Impossible d’afficher le PDF. <a href="../files/MongoMovie.pdf" target="_blank">Cliquez ici pour ouvrir le document</a>.
             </p>
         </div>
         <div class="screenshots">
-            <h2>Screenshots:</h2>
+            <h2>Captures d’écran :</h2>
             <img src="../assets/mongo-movie.png" alt="mongo-movie">
         </div>
         <div class="repository">
-            <h2>Repository:</h2>
+            <h2>Dépôt GitHub :</h2>
             <a href="https://github.com/sassank/Mongo-Movie" target="_blank" class="github-link">
-                View source code on GitHub <i class="fa fa-external-link"></i></a>
+                Consulter le code source sur GitHub <i class="fa fa-external-link"></i>
+            </a>
         </div>
         <div class="button-container">
             <button class="all-project-button" onclick="window.location.href='../index.html#projects';">
                 <i class="fas fa-angle-left"></i>
-                Back to Projects
+                Retour aux projets
             </button>
         </div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var pdfEmbed = document.getElementById("pdfEmbed");
-    
-            // Vérifier si le PDF est bien chargé
+
             pdfEmbed.onerror = function () {
                 document.getElementById("pdfFallback").style.display = "block";
                 pdfEmbed.style.display = "none";
             };
-    
-            // Optionnel : Vérifier sur mobile si l'embed fonctionne
+
             if (window.innerWidth <= 600) {
                 setTimeout(function () {
                     if (!pdfEmbed.contentDocument) {
