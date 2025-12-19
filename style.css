@@ -50,7 +50,7 @@
         }
 
         .container.profile-header h1 {
-            color: #2d236e;
+            color: #392e83;
             margin-top: 7px;
             padding: 5px;
             letter-spacing: 5px;
@@ -63,14 +63,14 @@
         }
 
         .header-title-wrapper span {
-            padding: 18px;
+            padding: 16px;
             font-size: 1.4rem;
-            color: #2d236e;
+            color: #352c71;
         }
 
         .header-title-wrapper img {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
         }
 
         .flip-container {
@@ -239,19 +239,74 @@
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
           }
 
-        /* About section */
-        #about {
-            padding: 10px;
-            text-align: center;
-        }
+        /* ===== ABOUT / PRESENTATION ===== */
 
-        #about .container {
-            max-width: 80%;
-        }
+#about {
+    padding: 5rem 1.5rem;
+}
 
-        #about p {
-            line-height: 1.8rem;
-        }
+.about-container {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+.about-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    color: #fff;
+}
+
+.about-card {
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    backdrop-filter: blur(8px);
+}
+
+.about-card p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #e5e7eb;
+    margin-bottom: 1.5rem;
+}
+
+.cv-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.8rem;
+    font-weight: 600;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cv-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(99, 102, 241, 0.45);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 1.8rem;
+    }
+
+    .about-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .about-card p {
+        font-size: 1rem;
+    }
+}
+
 
         /* Skills section */
         #skills {
