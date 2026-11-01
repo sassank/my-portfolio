@@ -1,226 +1,894 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sassan Khalafi - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sassan Khalafi, développeur web full stack</title>
+  <meta name="description"
+    content="Développeur web full stack à Paris. TypeScript, Node.js, React, Vue.js et PHP, de l'interface à la base de données.">
+  <meta property="og:title" content="Sassan Khalafi, développeur web full stack">
+  <meta property="og:description"
+    content="TypeScript, Node.js, React, Vue.js et PHP, de l'interface à la base de données.">
+  <meta property="og:image" content="https://sassank.github.io/my-portfolio/files/profile_pic.jpeg">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #eef1f6;
+      --surface: #ffffff;
+      --ink: #172033;
+      --muted: #5a6478;
+      --line: #d5dbe6;
+      --accent: #3557c4;
+      --layer-1: #dbe4f8;
+      --layer-2: #b9cbf2;
+      --layer-3: #8ea9e6;
+      --layer-4: #5f80d6;
+      --layer-ink-dark: #0f1c3f;
+      --radius-lg: 22px;
+      --radius-sm: 10px;
+      --display: "Bricolage Grotesque", system-ui, sans-serif;
+      --body: "Manrope", system-ui, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121826;
+        --surface: #1a2234;
+        --ink: #e8ecf5;
+        --muted: #9aa4b8;
+        --line: #2b354b;
+        --accent: #8ea9ff;
+        --layer-1: #2a3a63;
+        --layer-2: #304780;
+        --layer-3: #39569c;
+        --layer-4: #4a6bc0;
+        --layer-ink-dark: #eef2ff;
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    .wrap {
+      width: min(1120px, 100% - 32px);
+      margin-inline: auto;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--display);
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+    }
+
+    /* ---------- Navigation ---------- */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 0;
+    }
+
+    .nav-name {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.15rem;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-links a.btn {
+    color: var(--ink);
+    }
+
+    .nav-links a.btn:hover {
+    color: var(--bg);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: .95rem;
+      text-decoration: none;
+      border: 1.5px solid var(--ink);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font-family: var(--body);
+      transition: background .15s, color .15s;
+    }
+
+    .btn:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .btn-solid {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .btn-solid:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 48px 0 96px;
+    }
+
+    .hero-id {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .hero-id img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--surface);
+      box-shadow: 0 0 0 1.5px var(--line);
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #2fa36b;
+      margin-right: 6px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6.2vw, 4.6rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      margin-bottom: 24px;
+    }
+
+    .hero-lead {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 34em;
+      margin: 0 0 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* La pile : élément signature */
+    .stack {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .layer {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      border-radius: var(--radius-lg);
+      color: var(--layer-ink-dark);
+    }
+
+    .layer:nth-child(1) { background: var(--layer-1); margin-inline: 0 36px; }
+    .layer:nth-child(2) { background: var(--layer-2); margin-inline: 12px 24px; }
+    .layer:nth-child(3) { background: var(--layer-3); margin-inline: 24px 12px; }
+    .layer:nth-child(4) { background: var(--layer-4); margin-inline: 36px 0; color: #fff; }
+
+    .layer-name {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .layer-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-weight: 500;
+      font-size: .95rem;
+    }
+
+    .stack-caption {
+      margin: 14px 0 0;
+      font-size: .9rem;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .layer {
+        animation: settle .7s cubic-bezier(.2, .8, .2, 1) both;
+      }
+
+      .layer:nth-child(4) { animation-delay: .05s; }
+      .layer:nth-child(3) { animation-delay: .17s; }
+      .layer:nth-child(2) { animation-delay: .29s; }
+      .layer:nth-child(1) { animation-delay: .41s; }
+
+      @keyframes settle {
+        from {
+          opacity: 0;
+          transform: translateY(-28px);
+        }
+
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    }
+
+    /* ---------- Sections ---------- */
+    section {
+      padding: 80px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    /* Expérience */
+    .jobs {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .job {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 32px;
+      padding: 28px 0;
+    }
+
+    .job+.job {
+      border-top: 1px dashed var(--line);
+    }
+
+    .job-when {
+      color: var(--muted);
+      font-weight: 500;
+      font-size: .95rem;
+      padding-top: 4px;
+    }
+
+    .job h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .job-company {
+      color: var(--accent);
+      font-weight: 600;
+      margin: 0 0 12px;
+    }
+
+    .job ul.points {
+      margin: 0 0 14px;
+      padding-left: 20px;
+      max-width: 62ch;
+    }
+
+    .job ul.points li+li {
+      margin-top: 6px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tags li {
+      padding: 3px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-size: .82rem;
+      font-weight: 500;
+    }
+
+    /* Projets */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .project {
+      grid-column: span 3;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .project.featured {
+      grid-column: span 6;
+    }
+
+    .project-media {
+      aspect-ratio: 16 / 9;
+      background: var(--layer-1);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .project-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-media img.contain {
+      object-fit: contain;
+      width: 55%;
+      height: 75%;
+    }
+
+    .project-media .initials {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 3rem;
+      color: var(--accent);
+    }
+
+    .project-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 22px 22px 24px;
+      flex: 1;
+    }
+
+    .project-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .project h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    .project-date {
+      color: var(--muted);
+      font-size: .88rem;
+      white-space: nowrap;
+    }
+
+    .project p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .project-link {
+      margin-top: auto;
+      padding-top: 8px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Contact */
+    .contact {
+      text-align: left;
+    }
+
+    .contact-mail {
+      display: inline-block;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(1.6rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      border-bottom: 3px solid var(--accent);
+      line-height: 1.2;
+      word-break: break-all;
+    }
+
+    .contact-text {
+      color: var(--muted);
+      max-width: 40em;
+      margin: 0 0 24px;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .copied {
+      color: #2fa36b;
+      font-weight: 600;
+      align-self: center;
+      min-height: 1.6em;
+    }
+
+    footer {
+      padding: 32px 0 48px;
+      color: var(--muted);
+      font-size: .9rem;
+      border-top: 1px solid var(--line);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 920px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        padding-bottom: 72px;
+      }
+
+      .project,
+      .project.featured {
+        grid-column: span 6;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+
+      .nav-links li:not(:last-child) {
+        display: none;
+      }
+
+      .layer {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-inline: 0 !important;
+      }
+
+      .stack-caption {
+        text-align: left;
+      }
+
+      .job {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .project,
+      .project.featured {
+        grid-column: 1 / -1;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <header>
-        <div class="flip-container">
-            <div class="flip-card">
-                <img class="profile-picture front" src="files/profile_pic.jpeg" alt="Photo de profil">
-                <img class="profile-picture back"
-                    src="https://i.pinimg.com/474x/f6/a2/7b/f6a27b2e573f38f4025bd5e80dc76fa0.jpg"
-                    alt="Photo alternative">
-            </div>
+  <div class="wrap">
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#" class="nav-name">Sassan Khalafi</a>
+      <ul class="nav-links">
+        <li><a href="#experience">Expérience</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="btn" href="files/CV__Sassan_Khalafi.pdf" target="_blank" rel="noopener">Mon CV</a></li>
+      </ul>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <div class="hero-id">
+          <img src="files/profile_pic.jpeg" alt="Sassan Khalafi">
+          <span><span class="status-dot" aria-hidden="true"></span>Ouvert aux opportunités en CDI, Paris</span>
         </div>
-        <div class="container profile-header">
-            <h1>Sassan Khalafi</h1>
-            <h3 class="header-title-wrapper">
-                <img src="https://cdn-icons-png.flaticon.com/512/1481/1481964.png" alt="Icône Développeur Web">
-                <span>Développeur Full Stack</span>
-                <span>|</span>
-                <span>Growth Marketer</span>
-                <img src="https://cdn-icons-png.flaticon.com/256/1998/1998517.png" alt="Icône Growth Marketing">
-            </h3>
+        <h1>Développeur web full stack</h1>
+        <p class="hero-lead">
+          Depuis 3 ans, je construis des applications web et mobiles de bout en bout : du recueil du besoin
+          à la mise en production, en passant par l'API, l'interface et la base de données.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#projets">Voir mes projets</a>
+          <a class="btn" href="https://github.com/sassank" target="_blank" rel="noopener"><i
+              class="fab fa-github"></i> GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/sassan-khl/" target="_blank" rel="noopener"><i
+              class="fab fa-linkedin"></i> LinkedIn</a>
         </div>
+      </div>
+
+      <div>
+        <ul class="stack" aria-label="Ma stack, de l'interface à l'infrastructure">
+          <li class="layer">
+            <span class="layer-name">Interface</span>
+            <ul class="layer-tech">
+              <li>React</li><li>Next.js</li><li>Vue.js</li><li>Flutter</li>
+            </ul>
+          </li>
+          <li class="layer">
+            <span class="layer-name">API</span>
+            <ul class="layer-tech">
+              <li>Node.js</li><li>NestJS</li><li>TypeScript</li><li>PHP 8.3</li><li>Symfony</li><li>API Platform</li>
+            </ul>
+          </li>
+          <li class="layer">
+            <span class="layer-name">Données</span>
+            <ul class="layer-tech">
+              <li>PostgreSQL</li><li>MySQL</li><li>MongoDB</li><li>Firebase</li>
+            </ul>
+          </li>
+          <li class="layer">
+            <span class="layer-name">Infra &amp; qualité</span>
+            <ul class="layer-tech">
+              <li>Docker</li><li>GitHub Actions</li><li>AWS</li><li>Linux</li><li>PHPUnit</li><li>Jest</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="stack-caption">Ma stack, de l'écran jusqu'au serveur</p>
+      </div>
     </header>
+  </div>
 
-    <section id="about">
-    <div class="container about-container">
-        <div class="about-card">
-            <p>
-                Passionné par le développement web et le marketing digital, je combine mes compétences techniques avec
-                une vision stratégique pour créer des projets performants et impactants.
-            </p>
-
-            <p>
-                Depuis plusieurs années, je conçois des applications et sites web en utilisant des technologies
-                modernes, tout en m’assurant qu’ils soient optimisés pour l’expérience utilisateur.
-            </p>
-
-            <p>
-                En parallèle, je me spécialise dans le growth marketing afin d’aider les entreprises à accroître leur
-                visibilité, attirer des clients et maximiser leur retour sur investissement.
-            </p>
-
-            <a href="files/CV - Sassan Khalafi.pdf" download class="cv-button" target="_blank">
-                <i class="fas fa-download"></i> Télécharger mon CV
-            </a>
-        </div>
+  <section id="experience">
+    <div class="wrap">
+      <h2>Expérience</h2>
+      <ol class="jobs">
+        <li class="job">
+          <div class="job-when">Depuis oct. 2026</div>
+          <div>
+            <h3>Développeur Full Stack SaaS</h3>
+            <p class="job-company">Paris</p>
+            <ul class="points">
+              <li>Back-office et CRM multi-tenant pour des plateformes de mise en relation.</li>
+              <li>Gestion des équipes et des rôles, isolation des données par organisation.</li>
+              <li>Validation des prestataires et outils de support.</li>
+            </ul>
+            <ul class="tags">
+              <li>Symfony 7.4</li><li>API Platform</li><li>React</li><li>TypeScript</li><li>PostgreSQL</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="job-when">Mai 2026 – oct. 2026</div>
+          <div>
+            <h3>Développeur Full Stack freelance</h3>
+            <p class="job-company">Radif Analysis, Californie (à distance)</p>
+            <ul class="points">
+              <li>Plateforme de recherche et d'analyse musicale multimodale : audio, notation et métadonnées.</li>
+              <li>Migration du back-end en PHP 8.3 et moteur de recherche multilingue (filtres, RTL/LTR).</li>
+              <li>Dashboard d'administration : contenus, jeux de données, index de recherche.</li>
+            </ul>
+            <ul class="tags">
+              <li>PHP 8.3</li><li>MySQL</li><li>PHPUnit</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="job-when">Janv. 2026 – mars 2026</div>
+          <div>
+            <h3>Développeur freelance</h3>
+            <p class="job-company">Atelier Chiné, Paris</p>
+            <ul class="points">
+              <li>Refonte full stack d'un site e-commerce en Next.js et NestJS.</li>
+              <li>Intégration des maquettes Figma et de l'API SumUp (paiement, inventaire).</li>
+              <li>SEO technique.</li>
+            </ul>
+            <ul class="tags">
+              <li>Next.js</li><li>NestJS</li><li>TypeScript</li><li>SumUp</li><li>Figma</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="job-when">Déc. 2024 – déc. 2025</div>
+          <div>
+            <h3>Cofondateur et développeur mobile</h3>
+            <p class="job-company">CoachSphere, Paris</p>
+            <ul class="points">
+              <li>Application Flutter de mise en relation entre particuliers et coachs sportifs.</li>
+              <li>API REST Node.js : authentification, réservation, messagerie, notifications push, paiement Stripe.</li>
+              <li>Back-office d'administration, CI/CD GitHub Actions, MVP puis itérations en mode agile.</li>
+            </ul>
+            <ul class="tags">
+              <li>Flutter</li><li>Node.js</li><li>Firebase</li><li>Stripe</li><li>GitHub Actions</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="job-when">Sept. 2023 – sept. 2024</div>
+          <div>
+            <h3>Growth Engineer</h3>
+            <p class="job-company">Officéo, Paris</p>
+            <ul class="points">
+              <li>Audit du tracking, spécifications techniques, tests et validation des événements.</li>
+              <li>Participation à la refonte du formulaire : suivi GTM, GA4, Google Ads et tracking server-side.</li>
+              <li>Optimisations SEO/SEA et suivi des campagnes de génération de leads.</li>
+            </ul>
+            <ul class="tags">
+              <li>GTM</li><li>GA4</li><li>Server-side</li><li>SEO</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="job-when">Mars 2021 – août 2022</div>
+          <div>
+            <h3>Développeur web</h3>
+            <p class="job-company">Ministère de l'Intérieur, Paris</p>
+            <ul class="points">
+              <li>Intranet Élections sous Joomla 4 : template DSFR et modules réutilisables.</li>
+              <li>Générateur d'infographies électorales en JavaScript : saisie, aperçu et export d'images.</li>
+              <li>Automatisation des newsletters : conversion des fichiers pour accélérer l'envoi.</li>
+            </ul>
+            <ul class="tags">
+              <li>JavaScript</li><li>PHP</li><li>Joomla 4</li><li>DSFR</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
     </div>
-</section>
+  </section>
 
+  <section id="projets">
+    <div class="wrap">
+      <h2>Projets</h2>
+      <div class="projects">
 
-    <section id="skills">
-        <div class="container">
-            <h2>Compétences</h2>
-            <div class="logos">
-                <div class="logo_items-wrapper">
-                    <div class="logo_items">
-                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968267.png" alt="HTML5" />
-                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968242.png" alt="CSS3" />
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
-                            alt="JavaScript" />
-                        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968332.png" alt="PHP" />
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv8e8DY2HEtxzguVyTkNj1DmaQglni2j9SRw&s"
-                            alt="Python" />
-                        <img src="https://cdn0.iconfinder.com/data/icons/logos-brands-in-colors/128/react-512.png"
-                            alt="React" />
-                        <img src="https://pngimg.com/d/mysql_PNG23.png" alt="MySQL" />
-                        <img src="https://upload.wikimedia.org/wikipedia/fr/4/45/MongoDB-Logo.svg" alt="MongoDB">
-                        <img src="https://images.vexels.com/media/users/3/140692/isolated/lists/72d1f12edf758d24f5b6db73bac4f297-linux-logo.png"
-                            alt="Linux">
-                        <img src="https://static.vecteezy.com/system/resources/thumbnails/020/975/581/small/wordpress-logo-wordpress-icon-transparent-free-png.png"
-                            alt="WordPress" />
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Prestashop.svg/2389px-Prestashop.svg.png"
-                            alt="Prestashop" />
-                        <img src="https://images.seeklogo.com/logo-png/34/2/flutter-logo-png_seeklogo-349577.png"
-                            alt="Flutter" />
-                        <img src="https://cdn-icons-png.flaticon.com/512/10145/10145789.png" alt="SEO" />
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3RcVh1lRmO-40gbgBeDpOP1pTSvPdSTMAZMBXkb-prtX7W3LZqQgErqmq26e6cWQ-CkE&usqp=CAU"
-                            alt="Google Ads" />
-                        <img src="https://media2.dev.to/dynamic/image/width=1080,height=1080,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Feff5lbvyrsm31yreks9q.png"
-                            alt="Google Apps Script" />
-                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-git-16-1175195.png?f=webp"
-                            alt="Git" />
-                    </div>
-                </div>
+        <article class="project featured">
+          <div class="project-media">
+            <img class="contain" src="https://www.coachsphere.app/assets/coachsphere.png" alt="Logo CoachSphere">
+          </div>
+          <div class="project-body">
+            <div class="project-head">
+              <h3>CoachSphere</h3>
+              <span class="project-date">2024 – 2025</span>
             </div>
-        </div>
-    </section>
+            <p>Application que j'ai cofondée pour mettre en relation particuliers et coachs sportifs : réservation,
+              messagerie, notifications push et paiement en ligne, avec un back-office d'administration.</p>
+            <ul class="tags">
+              <li>Flutter</li><li>Node.js</li><li>Firebase</li><li>Stripe</li>
+            </ul>
+            <a class="project-link" href="https://www.coachsphere.app" target="_blank" rel="noopener">Voir le site <i
+                class="fas fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </article>
 
-    <section id="projects">
-        <h2>Projets</h2>
-
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-content">
-                    <span class="project-date"><i class="fas fa-calendar-alt"></i> Nov. 2025</span>
-                    <h3 class="project-title">BugMemo</h3>
-                    <p class="project-description">Développement d’un outil pour aider les développeurs à enregistrer et retrouver facilement bugs, logs et solutions.</p>
-                    <img class="project-image" src="assets/bugmemo.png" alt="Mongo Movie">
-                    <button class="project-button" onclick="window.open('https://github.com/sassank/bugmemo', '_blank')">
-                        Voir le Projet <i class="fas fa-external-link-alt"></i>
-                    </button>
-                </div>
+        <article class="project featured">
+          <div class="project-media">
+            <img src="assets/bugmemo.png" alt="Capture d'écran de BugMemo">
+          </div>
+          <div class="project-body">
+            <div class="project-head">
+              <h3>BugMemo</h3>
+              <span class="project-date">Nov. 2025</span>
             </div>
+            <p>Outil pour aider les développeurs à enregistrer et retrouver facilement leurs bugs, logs et solutions.
+            </p>
+            <!-- À COMPLÉTER : stack de BugMemo -->
+            <a class="project-link" href="https://github.com/sassank/bugmemo" target="_blank" rel="noopener">Code
+              source <i class="fab fa-github"></i></a>
+          </div>
+        </article>
 
-            <div class="project-card">
-                <div class="project-content">
-                    <span class="project-date"><i class="fas fa-calendar-alt"></i> 2025</span>
-                    <h3 class="project-title">CoachSphere</h3>
-                    <p class="project-description">Application mobile connectant des coachs sportifs certifiés avec des
-                        particuliers en France.</p>
-                    <img class="project-logo" src="https://www.coachsphere.app/assets/coachsphere.png"
-                        alt="coachsphere-logo" style="height:180px; display:block; margin:10px auto;">
-                    <button class="project-button" onclick="window.open('https://www.coachsphere.app', '_blank')">
-                        Voir le site <i class="fas fa-external-link-alt"></i>
-                    </button>
-                </div>
+        <article class="project">
+          <div class="project-media">
+            <!-- À COMPLÉTER : remplace par <img src="assets/codeswipe.png" alt="Capture d'écran de CodeSwipe"> -->
+            <span class="initials" aria-hidden="true">CS</span>
+          </div>
+          <div class="project-body">
+            <div class="project-head">
+              <h3>CodeSwipe</h3>
+              <span class="project-date">Projet perso</span>
             </div>
+            <p>Application de révision du code de la route, interface et API développées de bout en bout.</p>
+            <ul class="tags">
+              <li>Vue.js</li><li>TypeScript</li><li>Node.js</li><li>MongoDB</li>
+            </ul>
+            <!-- À COMPLÉTER : lien exact du repo ou de la démo -->
+            <a class="project-link" href="https://github.com/sassank" target="_blank" rel="noopener">Code source <i
+                class="fab fa-github"></i></a>
+          </div>
+        </article>
 
-            <div class="project-card">
-                <div class="project-content">
-                    <span class="project-date"><i class="fas fa-calendar-alt"></i> Août 2024</span>
-                    <h3 class="project-title">ViteDrive</h3>
-                    <p class="project-description">
-                        Plateforme web de location de véhicules permettant aux utilisateurs de rechercher, réserver et
-                        gérer leurs locations en ligne.
-                    </p>
-                    <img class="project-image" src="assets/vitedrive.png" alt="ViteDrive">
-                    <button class="project-button" onclick="window.location.href='projects/vitedrive.html';">
-                        Détails du projet <i class="fas fa-angle-right"></i>
-                    </button>
-                </div>
+        <article class="project">
+          <div class="project-media">
+            <img src="assets/calmedica.png" alt="Capture d'écran de Calmedica">
+          </div>
+          <div class="project-body">
+            <div class="project-head">
+              <h3>Calmedica</h3>
+              <span class="project-date">Juin 2024</span>
             </div>
+            <p>Plateforme de transcription audio destinée aux patients, développée pour la société Calmedica.</p>
+            <!-- À COMPLÉTER : stack -->
+            <a class="project-link" href="projects/calmedica.html">Détails du projet</a>
+          </div>
+        </article>
 
-
-            <div class="project-card">
-                <div class="project-content">
-                    <span class="project-date"><i class="fas fa-calendar-alt"></i> Juin 2024</span>
-                    <h3 class="project-title">Calmedica</h3>
-                    <p class="project-description">Plateforme de transcription audio destinée aux patients, développée
-                        pour la société Calmedica.</p>
-                    <img class="project-image" src="assets/calmedica.png" alt="Calmedica">
-                    <button class="project-button" onclick="window.location.href='projects/calmedica.html';">
-                        Détails du projet <i class="fas fa-angle-right"></i>
-                    </button>
-                </div>
+        <article class="project">
+          <div class="project-media">
+            <img src="assets/vitedrive.png" alt="Capture d'écran de ViteDrive">
+          </div>
+          <div class="project-body">
+            <div class="project-head">
+              <h3>ViteDrive</h3>
+              <span class="project-date">Août 2024</span>
             </div>
+            <p>Plateforme de location de véhicules : recherche, réservation et gestion des locations en ligne.</p>
+            <!-- À COMPLÉTER : stack -->
+            <a class="project-link" href="projects/vitedrive.html">Détails du projet</a>
+          </div>
+        </article>
 
-            <div class="project-card">
-                <div class="project-content">
-                    <span class="project-date"><i class="fas fa-calendar-alt"></i> Août. 2023</span>
-                    <h3 class="project-title">Safranco</h3>
-                    <p class="project-description">Site vitrine développé pour renforcer la présence en ligne du
-                        grossiste Safranco.</p>
-                    <img class="project-image" src="assets/safranco.png" alt="Safranco">
-                    <button class="project-button" onclick="window.location.href='projects/safranco.html';">
-                        Détails du projet <i class="fas fa-angle-right"></i>
-                    </button>
-                </div>
+        <article class="project">
+          <div class="project-media">
+            <img src="assets/safranco.png" alt="Capture d'écran du site Safranco">
+          </div>
+          <div class="project-body">
+            <div class="project-head">
+              <h3>Safranco</h3>
+              <span class="project-date">Août 2023</span>
             </div>
+            <p>Site vitrine pour renforcer la présence en ligne du grossiste Safranco.</p>
+            <!-- À COMPLÉTER : stack -->
+            <a class="project-link" href="projects/safranco.html">Détails du projet</a>
+          </div>
+        </article>
 
-            <div class="project-card">
-                <div class="project-content">
-                    <span class="project-date"><i class="fas fa-calendar-alt"></i> Fév. 2021</span>
-                    <h3 class="project-title">OwnCloud</h3>
-                    <p class="project-description">Mise en place d’un serveur cloud personnel sous système Debian.</p>
-                    <img class="project-image" src="assets/owncloud.png" alt="OwnCloud">
-                    <button class="project-button" onclick="window.location.href='projects/own-cloud.html';">
-                        Détails du projet <i class="fas fa-angle-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact">
-        <h2>Me contacter</h2>
-        <p>N’hésitez pas à me joindre via les options ci-dessous :</p>
-        <div class="container">
-            <a href="#" class="contact-btn email-btn" onclick="copyEmail(event)">
-                <i class="fas fa-envelope"></i> Email
-            </a>
-            <a href="https://api.whatsapp.com/send?phone=33619787280" target="_blank" class="contact-btn whatsapp-btn">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
-            <a href="https://www.linkedin.com/in/sassan-khl/" target="_blank" class="contact-btn linkedin-btn">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-        </div>
-    </section>
+  <section id="contact">
+    <div class="wrap contact">
+      <h2>Travaillons ensemble</h2>
+      <p class="contact-text">Je cherche un poste de développeur full stack en CDI, à Paris ou en hybride. Le plus
+        simple pour me joindre, c'est par email.</p>
+      <a class="contact-mail" href="mailto:sassan.khalafi@gmail.com">sassan.khalafi@gmail.com</a>
+      <div class="contact-actions">
+        <button class="btn" type="button" id="copy-btn"><i class="far fa-copy"></i> Copier l'adresse</button>
+        <a class="btn" href="files/CV__Sassan_Khalafi.pdf" download><i class="fas fa-download"></i> Télécharger
+          mon CV</a>
+        <a class="btn" href="https://www.linkedin.com/in/sassan-khl/" target="_blank" rel="noopener"><i
+            class="fab fa-linkedin"></i> LinkedIn</a>
+        <a class="btn" href="https://api.whatsapp.com/send?phone=33619787280" target="_blank" rel="noopener"><i
+            class="fab fa-whatsapp"></i> WhatsApp</a>
+        <span class="copied" id="copied" role="status" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 · Sassan Khalafi</p>
-        </div>
-    </footer>
+  <footer>
+    <div class="wrap">© <span id="year">2026</span> Sassan Khalafi</div>
+  </footer>
 
-    <script>
-        function copyEmail(event) {
-            event.preventDefault();
-            const email = "sassan.khalafi@gmail.com";
-            const tempInput = document.createElement("input");
-            document.body.appendChild(tempInput);
-            tempInput.value = email;
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            alert("Adresse e-mail copiée dans le presse-papiers !");
-        }
-    </script>
+  <script>
+    const EMAIL = "sassan.khalafi@gmail.com";
+    const status = document.getElementById("copied");
+
+    document.getElementById("copy-btn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(EMAIL);
+      } catch (e) {
+        const input = document.createElement("input");
+        input.value = EMAIL;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+      }
+      status.textContent = "Adresse copiée";
+      setTimeout(() => (status.textContent = ""), 2500);
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 
 </html>
