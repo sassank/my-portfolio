@@ -567,6 +567,80 @@
       background: #d98b16;
     }
 
+    /* Veille technologique */
+    .watch-intro {
+      color: var(--muted);
+      max-width: 44em;
+      margin: -12px 0 36px;
+    }
+
+    .watch-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .watch-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+    }
+
+    .watch-cat {
+      justify-self: start;
+      align-self: flex-start;
+      padding: 2px 11px;
+      border-radius: 999px;
+      background: var(--layer-1);
+      color: var(--layer-ink-dark);
+      font-size: .8rem;
+      font-weight: 600;
+    }
+
+    .watch-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .watch-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .watch-card .watch-why {
+      color: var(--ink);
+      font-size: .95rem;
+      border-left: 3px solid var(--accent);
+      padding-left: 12px;
+    }
+
+    .watch-sources {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 32px;
+      padding-top: 28px;
+      border-top: 1px dashed var(--line);
+    }
+
+    .watch-sources h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding-top: 4px;
+    }
+
+    .watch-sources .tags li a {
+      text-decoration: none;
+    }
+
+    .watch-sources .tags li:has(a):hover {
+      border-color: var(--accent);
+    }
+
     /* Contact */
     .contact {
       text-align: left;
@@ -654,6 +728,15 @@
         grid-column: 1 / -1;
       }
 
+      .watch-grid,
+      .watch-sources {
+        grid-template-columns: 1fr;
+      }
+
+      .watch-sources {
+        gap: 12px;
+      }
+
       section {
         padding: 56px 0;
       }
@@ -668,6 +751,7 @@
       <ul class="nav-links">
         <li><a href="#experience">Expérience</a></li>
         <li><a href="#projets">Projets</a></li>
+        <li><a href="#veille">Veille</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a class="btn" href="files/CV-Sassan-Khalafi.pdf" target="_blank" rel="noopener">Mon CV</a></li>
       </ul>
@@ -974,6 +1058,67 @@
           </div>
         </article>
 
+      </div>
+    </div>
+  </section>
+
+  <section id="veille">
+    <div class="wrap">
+      <h2>Veille technologique</h2>
+      <p class="watch-intro">Je suis l'évolution de ma stack pour savoir quoi adopter, et quand. Voici les sujets
+        que je surveille en ce moment et ce qu'ils changent concrètement dans mon travail.</p>
+
+      <!-- À ADAPTER : remplace ou complète ces sujets avec ta veille réelle -->
+      <div class="watch-grid">
+        <article class="watch-card">
+          <span class="watch-cat">Back-end</span>
+          <h3>Symfony 7.4 LTS et Symfony 8</h3>
+          <p>Nouvelle version majeure du framework et version LTS de la branche 7, avec des dépréciations à
+            anticiper.</p>
+          <p class="watch-why">Pour moi : préparer la montée de version du CRM SaaS sans dette technique.</p>
+          <ul class="tags"><li>Symfony</li><li>PHP 8.4</li><li>API Platform</li></ul>
+        </article>
+
+        <article class="watch-card">
+          <span class="watch-cat">Front-end</span>
+          <h3>React Compiler</h3>
+          <p>Le compilateur mémoïse automatiquement les composants, ce qui rend la plupart des
+            <code>useMemo</code> et <code>useCallback</code> manuels inutiles.</p>
+          <p class="watch-why">Pour moi : un code React plus simple et des rendus plus rapides sur les back-offices.</p>
+          <ul class="tags"><li>React</li><li>Performance</li></ul>
+        </article>
+
+        <article class="watch-card">
+          <span class="watch-cat">Outillage</span>
+          <h3>TypeScript natif (réécriture en Go)</h3>
+          <p>Microsoft réécrit le compilateur TypeScript en Go, pour une vérification de types et une
+            compilation nettement plus rapides.</p>
+          <p class="watch-why">Pour moi : une CI et un éditeur plus réactifs sur les gros projets TypeScript.</p>
+          <ul class="tags"><li>TypeScript</li><li>DX</li><li>CI</li></ul>
+        </article>
+
+        <article class="watch-card">
+          <span class="watch-cat">IA &amp; productivité</span>
+          <h3>Assistants IA dans le workflow</h3>
+          <p>Les agents de code et la revue assistée arrivent dans les éditeurs et les pull requests.</p>
+          <p class="watch-why">Pour moi : les utiliser pour les tests et la revue, en gardant la main sur
+            l'architecture et la sécurité.</p>
+          <ul class="tags"><li>IA</li><li>Code review</li><li>Tests</li></ul>
+        </article>
+      </div>
+
+      <div class="watch-sources">
+        <h3>Mes sources</h3>
+        <!-- À ADAPTER : tes vraies sources -->
+        <ul class="tags">
+          <li><a href="https://symfony.com/blog/" target="_blank" rel="noopener">Blog Symfony</a></li>
+          <li><a href="https://react.dev/blog" target="_blank" rel="noopener">Blog React</a></li>
+          <li><a href="https://devblogs.microsoft.com/typescript/" target="_blank" rel="noopener">Blog TypeScript</a></li>
+          <li><a href="https://nodejs.org/en/blog" target="_blank" rel="noopener">Blog Node.js</a></li>
+          <li>Newsletters</li>
+          <li>Podcasts</li>
+          <li>Meetups Paris</li>
+        </ul>
       </div>
     </div>
   </section>
