@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Back-office CRM multi-tenant (SaaS) | Sassan Khalafi</title>
+  <meta name="description"
+    content="Back-office et CRM multi-tenant pour des plateformes de mise en relation. Symfony 7.4, API Platform, React, TypeScript, PostgreSQL.">
+  <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Manrope:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* ---------- Thème ---------- */
+    :root {
+      --bg: #eef1f6;
+      --surface: #ffffff;
+      --ink: #172033;
+      --muted: #5a6478;
+      --line: #d5dbe6;
+      --accent: #3557c4;
+      --layer-1: #dbe4f8;
+      --layer-2: #b9cbf2;
+      --layer-3: #8ea9e6;
+      --layer-4: #5f80d6;
+      --layer-ink-dark: #0f1c3f;
+      --radius-lg: 22px;
+      --radius-sm: 10px;
+      --display: "Bricolage Grotesque", system-ui, sans-serif;
+      --body: "Manrope", system-ui, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121826;
+        --surface: #1a2234;
+        --ink: #e8ecf5;
+        --muted: #9aa4b8;
+        --line: #2b354b;
+        --accent: #8ea9ff;
+        --layer-1: #2a3a63;
+        --layer-2: #304780;
+        --layer-3: #39569c;
+        --layer-4: #4a6bc0;
+        --layer-ink-dark: #eef2ff;
+      }
+    }
+
+    /* ---------- Base ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    .wrap {
+      width: min(1120px, 100% - 32px);
+      margin-inline: auto;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--display);
+      line-height: 1.1;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 3.2vw, 2.2rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    section {
+      padding: 72px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .caption {
+      margin: 12px 0 0;
+      font-size: .9rem;
+      color: var(--muted);
+    }
+
+    /* ---------- Navigation et boutons ---------- */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .nav-back { color: var(--muted); }
+    .nav-back:hover { color: var(--ink); }
+
+    .nav-name {
+      font-family: var(--display);
+      font-size: 1.15rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      border: 1.5px solid var(--ink);
+      font-weight: 600;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+    }
+
+    .btn:hover { background: var(--ink); color: var(--bg); }
+
+    /* ---------- En-tête ---------- */
+    .hero {
+      padding: 40px 0 72px;
+      max-width: 820px;
+    }
+
+    .eyebrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow span + span::before {
+      content: "·";
+      margin-right: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6.4vw, 4.4rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      margin-bottom: 20px;
+    }
+
+    .nowrap { white-space: nowrap; }
+
+    .lead {
+      font-size: 1.18rem;
+      color: var(--muted);
+      max-width: 38em;
+      margin: 0 0 28px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0 0 28px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tags li {
+      padding: 3px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-size: .82rem;
+      font-weight: 500;
+    }
+
+    .confidential {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .confidential i { color: var(--accent); }
+
+    /* ---------- Capture ---------- */
+    .shot {
+      margin: 0;
+    }
+
+    .shot img {
+      display: block;
+      max-width: 100%;
+      max-height: 520px;
+      height: auto;
+      margin-inline: auto;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+    }
+
+    .shot figcaption { text-align: center; }
+
+    /* ---------- Schéma multi-tenant ---------- */
+    .tenants {
+      display: grid;
+      gap: 10px;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .a { --t: #3557c4; }
+    .b { --t: #2fa36b; }
+    .c { --t: #d98b16; }
+
+    .org {
+      display: flex;
+      flex-direction: column;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border-left: 4px solid var(--t);
+      background: var(--bg);
+      font-family: var(--display);
+      font-weight: 700;
+    }
+
+    .org small {
+      font-family: var(--body);
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .tier {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      background: var(--layer-2);
+      color: var(--layer-ink-dark);
+    }
+
+    .tier b { font-family: var(--display); }
+
+    .tier.api { background: var(--layer-4); color: #fff; }
+
+    .tier em {
+      margin-left: auto;
+      font-style: normal;
+      font-size: .88rem;
+    }
+
+    .tier.db {
+      justify-content: center;
+      background: var(--layer-1);
+    }
+
+    .slice {
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1.5px solid var(--t);
+      font-weight: 600;
+      font-size: .92rem;
+    }
+
+    /* ---------- Le projet ---------- */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .prose p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .prose strong { color: var(--ink); }
+
+    .features {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .features li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+    }
+
+    .features i {
+      color: var(--accent);
+      padding-top: 5px;
+      text-align: center;
+    }
+
+    .features strong { display: block; }
+
+    .features span {
+      color: var(--muted);
+      font-size: .97rem;
+    }
+
+    /* Pile technique */
+    .stack {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .layer {
+      display: grid;
+      grid-template-columns: 104px 1fr;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      border-radius: var(--radius-lg);
+      color: var(--layer-ink-dark);
+    }
+
+    .layer:nth-child(1) { background: var(--layer-1); margin-inline: 0 30px; }
+    .layer:nth-child(2) { background: var(--layer-2); margin-inline: 10px 20px; }
+    .layer:nth-child(3) { background: var(--layer-3); margin-inline: 20px 10px; }
+    .layer:nth-child(4) { background: var(--layer-4); margin-inline: 30px 0; color: #fff; }
+
+    .layer b { font-family: var(--display); }
+
+    .stack + .caption { text-align: right; }
+
+    /* ---------- Enjeux ---------- */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .97rem;
+    }
+
+    /* ---------- Pied de page ---------- */
+    .project-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    footer {
+      padding: 32px 0 48px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .layer { animation: settle .7s cubic-bezier(.2, .8, .2, 1) both; }
+      .layer:nth-child(3) { animation-delay: .12s; }
+      .layer:nth-child(2) { animation-delay: .24s; }
+      .layer:nth-child(1) { animation-delay: .36s; }
+
+      @keyframes settle {
+        from { opacity: 0; transform: translateY(-28px); }
+      }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 920px) {
+      .two-col { grid-template-columns: 1fr; gap: 40px; }
+      .cards { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      body { font-size: 16px; }
+      section { padding: 56px 0; }
+      .nav-name { display: none; }
+      .row { grid-template-columns: 1fr; }
+      .tier em { margin-left: 0; }
+      .layer { grid-template-columns: 1fr; gap: 6px; margin-inline: 0 !important; }
+      .stack + .caption { text-align: left; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Navigation">
+      <a class="nav-back" href="../index.html#projets"><i class="fas fa-arrow-left"></i> Tous les projets</a>
+      <a class="nav-name" href="../index.html">Sassan Khalafi</a>
+    </nav>
+
+    <header class="hero">
+      <div class="eyebrow">
+        <span>Projet client</span>
+        <span>Depuis oct. 2026</span>
+        <span>SaaS B2B</span>
+      </div>
+      <h1>Back-office CRM <span class="nowrap">multi-tenant</span></h1>
+      <p class="lead">
+        Le back-office et le CRM d'un SaaS utilisé par plusieurs plateformes de mise en relation.
+        Chaque organisation gère ses équipes, ses prestataires et son support, sans jamais voir les
+        données des autres.
+      </p>
+      <ul class="tags" aria-label="Technologies">
+        <li>Symfony 7.4</li><li>API Platform</li><li>React</li><li>TypeScript</li><li>PostgreSQL</li>
+      </ul>
+    </header>
+  </div>
+
+  <section aria-labelledby="apercu">
+    <div class="wrap">
+      <h2 id="apercu">Aperçu</h2>
+      <figure class="shot">
+        <img src="../assets/crm-saas.png" alt="Capture du back-office CRM, données masquées">
+        <figcaption class="caption">Le back-office avec les menus et les fonctionnalités.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section aria-labelledby="multitenant">
+    <div class="wrap">
+      <h2 id="multitenant">Une application, des organisations isolées</h2>
+      <div class="tenants" role="img"
+        aria-label="Schéma : trois organisations utilisent la même interface React et la même API Platform, mais chacune n'accède qu'à ses propres données dans PostgreSQL.">
+        <div class="row">
+          <div class="org a">Plateforme A<small>équipes, rôles</small></div>
+          <div class="org b">Plateforme B<small>équipes, rôles</small></div>
+          <div class="org c">Plateforme C<small>équipes, rôles</small></div>
+        </div>
+        <div class="tier"><b>Interface</b> React · TypeScript</div>
+        <div class="tier api"><b>API</b> Symfony 7.4 · API Platform <em>filtre par organisation et contrôle des rôles</em></div>
+        <div class="row">
+          <div class="slice a">Données A</div>
+          <div class="slice b">Données B</div>
+          <div class="slice c">Données C</div>
+        </div>
+        <div class="tier db"><b>PostgreSQL</b></div>
+      </div>
+      <p class="caption">Toutes les organisations partagent la même application ; chaque requête est limitée aux données de l'organisation de l'utilisateur.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="projet">
+    <div class="wrap two-col">
+      <div>
+        <h2 id="projet">Ce que j'y construis</h2>
+        <div class="prose">
+          <p>
+            Les plateformes de mise en relation ont toutes besoin des mêmes outils internes : suivre leurs
+            utilisateurs, valider les prestataires, répondre au support. Plutôt que de les redévelopper pour
+            chacune, <strong>un seul back-office SaaS les sert toutes</strong>.
+          </p>
+          <p>
+            J'interviens en full stack, de l'API Symfony jusqu'aux écrans React, avec un point d'attention
+            constant : qu'aucune donnée ne passe d'une organisation à l'autre.
+          </p>
+        </div>
+        <ul class="features">
+          <li><i class="fas fa-building"></i><div><strong>Isolation par organisation</strong><span>Chaque organisation ne voit et ne modifie que ses propres données.</span></div></li>
+          <li><i class="fas fa-users-gear"></i><div><strong>Équipes et rôles</strong><span>Gestion des membres et des droits d'accès au sein de chaque organisation.</span></div></li>
+          <li><i class="fas fa-user-check"></i><div><strong>Validation des prestataires</strong><span>Parcours de vérification avant qu'un prestataire soit visible sur la plateforme.</span></div></li>
+          <li><i class="fas fa-headset"></i><div><strong>Outils de support</strong><span>Des écrans pour que les équipes support retrouvent et traitent rapidement un dossier.</span></div></li>
+        </ul>
+      </div>
+
+      <div>
+        <ul class="stack" aria-label="Stack du projet, de l'interface aux données">
+          <li class="layer"><b>Interface</b><span>React · TypeScript</span></li>
+          <li class="layer"><b>API</b><span>API Platform · REST</span></li>
+          <li class="layer"><b>Métier</b><span>Symfony 7.4 · PHP</span></li>
+          <li class="layer"><b>Données</b><span>PostgreSQL</span></li>
+        </ul>
+        <p class="caption">La stack du back-office</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="enjeux">
+    <div class="wrap">
+      <h2 id="enjeux">Les enjeux</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Sécurité des données</h3>
+          <p>Dans un SaaS multi-tenant, une fuite entre organisations est l'erreur la plus grave. L'isolation
+            est donc appliquée au niveau de l'API, pas seulement dans l'interface.</p>
+        </article>
+        <article class="card">
+          <h3>Des droits lisibles</h3>
+          <p>Les rôles doivent rester simples à comprendre pour les administrateurs de chaque organisation,
+            tout en couvrant les besoins des équipes métier et support.</p>
+        </article>
+        <article class="card">
+          <h3>Un outil du quotidien</h3>
+          <p>Le back-office est utilisé toute la journée par les équipes internes : il doit être rapide,
+            clair et réduire le nombre de clics pour chaque tâche.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap project-nav">
+      <a class="btn" href="../index.html#projets"><i class="fas fa-arrow-left"></i> Retour aux projets</a>
+      <a class="btn" href="printerwatch.html">Projet suivant : PrinterWatch <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">© <span id="year">2026</span> Sassan Khalafi</div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
